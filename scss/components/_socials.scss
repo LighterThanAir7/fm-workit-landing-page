@@ -1,0 +1,26 @@
+@use '../abstract' as *;
+
+.socials {
+    $root: &;
+    @include flex($g: size(12));
+
+    a {
+        @include flex($inline: true, $ai: center, $jc: center);
+        width: 44px;
+        height: 44px;
+        line-height: 0;
+
+        &:hover {
+            #{$root}__icon {
+                path {
+                    fill: clr(purple, 900);
+                }
+            }
+        }
+    }
+
+    &__icon {
+        cursor: pointer;
+        display: block;
+    }
+}

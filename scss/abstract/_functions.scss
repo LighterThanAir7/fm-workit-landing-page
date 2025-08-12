@@ -1,0 +1,93 @@
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:meta';
+@use 'sass:string';
+@use 'sass:list';
+@use 'sizes' as *;
+@use 'typography' as *;
+
+@use "colors" as *;
+
+@function clr($color, $shade: null) {
+    @if map-has-key($colors, $color) {
+        $value: map-get($colors, $color);
+
+        // Case: flat color (like 'green' or 'white')
+        @if type-of($value) != 'map' {
+            @if $shade == null {
+                @return $value;
+            } @else {
+                @error 'Color "#{$color}" does not have shades, but "#{$shade}" was provided.';
+            }
+        }
+
+        // Case: nested color map (like 'purple')
+        @if $shade != null and map-has-key($value, $shade) {
+            @return map-get($value, $shade);
+        } @else {
+            @error 'Shade "#{$shade}" not found for color "#{$color}".';
+        }
+    } @else {
+        @error 'Color "#{$color}" not found in $colors map.';
+    }
+}
+
+@function fs($font-size) {
+    @if map.has-key($font-sizes, $font-size) {
+        @return map.get($font-sizes, $font-size);
+    } @else {
+        @error '$font-sizes does not have that size!';
+    }
+}
+
+@function fw($font-weight) {
+    @if map.has-key($font-weights, $font-weight) {
+        @return map.get($font-weights, $font-weight);
+    } @else {
+        @error '$font-weights does not have that size!';
+    }
+}
+
+@function size($size) {
+    // Ako je broj bez jedinice
+    @if meta.type-of($size) == 'number' and math.unit($size) == '' {
+        @if map.has-key($sizes, $size) {
+            @return map.get($sizes, $size);
+        } @else {
+            @error '$sizes does not have that size!';
+        }
+    }
+        // Ako ima jedinicu (px, rem, em, ...)
+    @else if meta.type-of($size) == 'number' {
+        $unit: math.unit($size);
+        $num: strip-unit($size);
+        @if map.has-key($sizes, $num) {
+            @return #{$num}#{$unit}; // Vrati broj s originalnom jedinicom
+        } @else {
+            @error '$sizes does not have that size!';
+        }
+    }
+    @else {
+        @error 'Unsupported unit. Use unitless, px, rem or em.';
+    }
+}
+
+// >---------------------------------> Helper Functions <------------------------------------<
+
+@function strip-unit($value) {
+    @return math.div($value, ($value * 0 + 1)); // Uklanjanje jedinice (npr. 16px → 16)
+}
+
+@function str-split($string, $separator) {
+    $result: ();
+    $index: string.index($string, $separator);
+
+    @if $index == null {
+        @return ($string);
+    }
+
+    $slice: string.slice($string, 1, $index - 1);
+    $result: list.append($result, $slice);
+
+    @return list.join($result, str-split(string.slice($string, $index + string.length($separator)), $separator));
+}

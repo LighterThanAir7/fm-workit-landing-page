@@ -1,0 +1,16 @@
+@use '../abstract' as *;
+
+.container {
+    width: 100%;
+    max-width: $container-max-width + size(80);
+    margin-inline: auto;
+    padding-inline: size(80);
+
+    @include mq(xl) {
+        padding-inline: size(44);
+    }
+
+    @include mq(sm) {
+        padding-inline: size(20);
+    }
+}

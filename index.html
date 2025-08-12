@@ -1,51 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Workit landing page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+    <link rel="stylesheet" href="css/app.min.css">
+    <title>Frontend Mentor | Workit landing page</title>
 </head>
 <body>
-
-  Initial commit
-
-  Apply for access
-
-  Data tailored to your needs.
-
-  Learn more
-  
-  1
-
-  Actionable insights
-  
-  Optimize your products, improve customer satisfaction and stay ahead of the competition 
-  with our product data analytics.
-
-  2
-
-  Data-driven decisions
-
-  Make data-driven decisions with our product data analytics. Our AI-generated reports help 
-  you unlock insights hidden in your product data.
-
-  3
-
-  Always affordable
-
-  Always affordable pricing that scales with your business. Get top-quality product data 
-  analytics services without hidden costs or unexpected fees.
-
-  Be the first to test
-
-  Hi, I'm Louis Graham, the founder of the company. Book a demo call with me to become a 
-  beta tester for our app and kickstart your company. Apply for access below and I’ll be 
-  in touch to schedule a call.
-
-  Apply for access
-
+    <a class="skip-to-main-content" href="#main-content">Skip to content</a>
+    <header class="header">
+        <nav class="container">
+            <a href="#" aria-label="Home">
+                <img src="assets/images/logo-light.svg" alt="Workit logo">
+            </a>
+            <a class="btn btn--secondary" href="#cta">Apply for access</a>
+        </nav>
+    </header>
+    <main id="main-content" tabindex="-1">
+        <section class="hero">
+            <div class="container">
+                <svg class="hero__decoration hero__decoration-left" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="341" height="317" viewBox="0 0 341 317"><g fill="none" fill-rule="evenodd" stroke="#44FFA1" transform="rotate(-152 159.204 128.626)"><ellipse cx="54" cy="107.125" rx="53.5" ry="106.5"/><ellipse cx="94.706" cy="107" rx="53.5" ry="106.5"/><ellipse cx="134.529" cy="107.344" opacity=".75" rx="52.5" ry="106.5"/><ellipse cx="175.705" cy="108.102" opacity=".5" rx="53.5" ry="106.5"/><ellipse cx="217.294" cy="107.508" opacity=".25" rx="52.5" ry="106.5"/></g></svg>
+                <svg class="hero__decoration hero__decoration-right" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="174" height="181" viewBox="0 0 174 181"><g fill="none" fill-rule="evenodd" stroke="#44FFA1" transform="rotate(-56 110.742 58.398)"><ellipse cx="28" cy="56.621" rx="27.5" ry="55.5"/><ellipse cx="49.633" cy="56.504" rx="27.5" ry="55.5"/><ellipse cx="69.878" cy="56.117" opacity=".75" rx="27.5" ry="55.5"/><ellipse cx="91.511" cy="56" opacity=".5" rx="27.5" ry="55.5"/><ellipse cx="113.703" cy="56.712" opacity=".25" rx="27.5" ry="55.5"/></g></svg>
+                <div class="hero__content">
+                    <h1 class="hero__title">Data <span class="underline">tailored</span> to your needs.</h1>
+                    <a class="btn btn--primary" href="#values">Learn more</a>
+                </div>
+                <img class="hero__image" src="assets/images/image-hero.webp" alt="Slightly tilted mobile phone showing our workit app prototype">
+            </div>
+            <svg class="hero__clip-path-svg">
+                <clipPath id="hero-clip-path" clipPathUnits="objectBoundingBox"><path d="M0,0 V1 H1 V0 C1,0,0.752,0.944,0.501,0.944 C0.251,0.944,0,0,0,0"></path></clipPath>
+            </svg>
+            <div class="hero__clip-path"></div>
+        </section>
+        <section id="values" class="container" aria-labelledby="values-heading">
+            <h2 id="values-heading" class="sr-only">Our values</h2>
+            <ul class="value">
+                <li class="value__item">
+                    <h3>Actionable insights</h3>
+                    <p>Optimize your products, improve customer satisfaction and stay ahead of the competition with our product data analytics.</p>
+                </li>
+                <li class="value__item">
+                    <h3>Data-driven decisions</h3>
+                    <p>Make data-driven decisions with our product data analytics. Our AI-generated reports help you unlock insights hidden in your product data.</p>
+                </li>
+                <li class="value__item">
+                    <h3>Always affordable</h3>
+                    <p>Always affordable pricing that scales with your business. Get top-quality product data analytics services without hidden costs or unexpected fees.</p>
+                </li>
+            </ul>
+        </section>
+        <section id="cta" class="container">
+            <div class="cta">
+                <img class="cta__image" src="assets/images/image-founder.webp" alt="Louis Graham, the founder of the company. Light brown hair, beard, glasses and lovely smile wearing blueish t-shirt with pattern of trees on it.">
+                <div class="cta__content">
+                    <h2 class="cta__title">Be the first to test</h2>
+                    <p class="cta__text">Hi, I'm Louis Graham, the founder of the company. Book a demo call with me to become a beta tester for our app and kickstart your company. Apply for access below and I’ll be in touch to schedule a call.</p>
+                    <a class="btn btn--primary" href="#">Apply for access</a>
+                    <svg class="cta__decoration" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="221" height="212" viewBox="0 0 221 212"><g fill="none" fill-rule="evenodd" stroke="#44FFA1" transform="rotate(-145 104.244 83.528)"><ellipse cx="34.5" cy="68.5" rx="34" ry="68"/><ellipse cx="60.5" cy="68.5" rx="34" ry="68"/><ellipse cx="86" cy="68.5" opacity=".75" rx="33.5" ry="68"/><ellipse cx="112.5" cy="68.5" opacity=".5" rx="34" ry="68"/><ellipse cx="139" cy="68.5" opacity=".25" rx="33.5" ry="68"/></g></svg>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <a href="#" aria-label="Home">
+            <img src="assets/images/logo-dark.svg" alt="Workit logo">
+        </a>
+        <ul class="socials">
+            <li><a href="#" target="_blank" rel="noopener" aria-label="Facebook"><svg class="socials__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="#584D62" d="M18.896 0H1.104C.494 0 0 .494 0 1.104v17.793C0 19.506.494 20 1.104 20h9.58v-7.745H8.076V9.237h2.606V7.01c0-2.583 1.578-3.99 3.883-3.99 1.104 0 2.052.082 2.329.119v2.7h-1.598c-1.254 0-1.496.597-1.496 1.47v1.928h2.989l-.39 3.018h-2.6V20h5.098c.608 0 1.102-.494 1.102-1.104V1.104C20 .494 19.506 0 18.896 0Z"/></svg></a></li>
+            <li><a href="#" target="_blank" rel="noopener" aria-label="Twitter"><svg class="socials__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path fill="#584D62" d="M20 2.172a8.192 8.192 0 0 1-2.357.646 4.11 4.11 0 0 0 1.805-2.27 8.22 8.22 0 0 1-2.606.996A4.096 4.096 0 0 0 13.847.248c-2.65 0-4.596 2.472-3.998 5.037A11.648 11.648 0 0 1 1.392 1a4.109 4.109 0 0 0 1.27 5.478 4.086 4.086 0 0 1-1.858-.513c-.045 1.9 1.318 3.679 3.291 4.075a4.113 4.113 0 0 1-1.853.07 4.106 4.106 0 0 0 3.833 2.849A8.25 8.25 0 0 1 0 14.658a11.616 11.616 0 0 0 6.29 1.843c7.618 0 11.923-6.434 11.663-12.205A8.354 8.354 0 0 0 20 2.172Z"/></svg></a></li>
+            <li><a href="#" target="_blank" rel="noopener" aria-label="Instagram"><svg class="socials__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="#584D62" d="M10 1.802c2.67 0 2.987.01 4.042.059 2.71.123 3.975 1.409 4.099 4.099.048 1.054.057 1.37.057 4.04 0 2.672-.01 2.988-.057 4.042-.124 2.687-1.387 3.975-4.1 4.099-1.054.048-1.37.058-4.041.058-2.67 0-2.987-.01-4.04-.058-2.717-.124-3.977-1.416-4.1-4.1-.048-1.054-.058-1.37-.058-4.041 0-2.67.01-2.986.058-4.04.124-2.69 1.387-3.977 4.1-4.1 1.054-.048 1.37-.058 4.04-.058ZM10 0C7.284 0 6.944.012 5.877.06 2.246.227.227 2.242.061 5.877.01 6.944 0 7.284 0 10s.012 3.057.06 4.123c.167 3.632 2.182 5.65 5.817 5.817 1.067.048 1.407.06 4.123.06s3.057-.012 4.123-.06c3.629-.167 5.652-2.182 5.816-5.817.05-1.066.061-1.407.061-4.123s-.012-3.056-.06-4.122C19.777 2.249 17.76.228 14.124.06 13.057.01 12.716 0 10 0Zm0 4.865a5.135 5.135 0 1 0 0 10.27 5.135 5.135 0 0 0 0-10.27Zm0 8.468a3.333 3.333 0 1 1 0-6.666 3.333 3.333 0 0 1 0 6.666Zm5.338-9.87a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4Z"/></svg></a></li>
+        </ul>
+    </footer>
 </body>
 </html>

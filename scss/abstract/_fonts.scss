@@ -1,0 +1,16 @@
+@use 'typography' as *;
+
+@font-face {
+    font-family: $ff-primary-name;
+    src: url("../assets/fonts/fraunces/Fraunces-VariableFont_SOFT,WONK,opsz,wght.ttf");
+    font-weight: normal;
+    font-style: normal;
+    font-variation-settings: 'opsz' 144;
+}
+
+@font-face {
+    font-family: $ff-secondary-name;
+    src: url("../assets/fonts/manrope/Manrope-VariableFont_wght.ttf");
+    font-weight: normal;
+    font-style: normal;
+}

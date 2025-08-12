@@ -1,0 +1,12 @@
+@use '../abstract' as *;
+
+.footer {
+    display: grid;
+    place-items: center;
+    gap: size(56);
+    padding: size(112) size(80);
+
+    @include mq(xl) {
+        padding: size(80);
+    }
+}

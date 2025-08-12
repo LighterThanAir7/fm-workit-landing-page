@@ -1,0 +1,10 @@
+@use '../abstract' as *;
+
+.underline {
+    text-decoration: underline 3px clr(green);
+    text-underline-offset: 8px;
+}
+
+.sr-only {
+    @include visually-hidden;
+}

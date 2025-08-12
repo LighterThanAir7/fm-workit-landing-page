@@ -1,0 +1,20 @@
+@use '../abstract' as *;
+
+/* CSS */
+.skip-to-main-content {
+    position: absolute;
+    left: size(16);
+    top: size(16);
+    padding: size(8) size(12);
+    background: clr(purple, 900);
+    color: clr(white);
+    border-radius: 0.25rem;
+    z-index: 1000;
+    transform: translateY(-200%);
+
+    &:focus {
+        transform: translateY(0);
+        outline: 2px solid #44ffa1;
+        outline-offset: 2px;
+    }
+}

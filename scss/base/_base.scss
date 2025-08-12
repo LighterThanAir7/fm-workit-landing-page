@@ -1,0 +1,82 @@
+@use '../abstract' as *;
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+body {
+    color: clr(purple, 900);
+    background-color: clr(white);
+    font-family: $ff-secondary;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-size: fs(900);
+    font-family: $ff-primary;
+    line-height: 1;
+    font-variation-settings: "wght" 600;
+    margin-bottom: size(40);
+
+    @include mq(xl) {
+        font-size: fs(800);
+    }
+
+    @include mq(sm) {
+        font-size: fs(600);
+    }
+}
+
+h2 {
+    font-size: fs(700);
+    line-height: 120%;
+    font-family: $ff-primary;
+    font-variation-settings: "wght" 600;
+    margin-bottom: size(32);
+
+    @include mq(xl) {
+        font-size: fs(600);
+    }
+
+    @include mq(sm) {
+        font-size: fs(500);
+    }
+}
+
+h3 {
+    font-size: fs(500);
+    line-height: 120%;
+    font-family: $ff-primary;
+    margin-bottom: size(28);
+    font-variation-settings: "wght" 600;
+
+    @include mq(xl) {
+        font-size: fs(400);
+    }
+
+    @include mq(sm) {
+        font-size: fs(300);
+        margin-bottom: size(16);
+    }
+}
+
+p {
+    font-size: fs(200);
+    font-weight: fw(400);
+    line-height: 180%;
+
+    .bold {
+        line-height: 150%;
+        font-weight: fw(700);
+    }
+
+    @include mq(xl) {
+        font-size: fs(100);
+    }
+}

@@ -1,0 +1,23 @@
+$ff-primary-name: "Fraunces 144";
+$ff-secondary-name: "Manrope";
+
+$ff-primary: "#{$ff-primary-name}", sans-serif;
+$ff-secondary: "#{$ff-secondary-name}", sans-serif;
+
+$font-sizes: (
+    100: 1rem,      // 16px
+    200: 1.125rem,  // 18px
+    300: 1.5rem,    // 24px
+    400: 1.75rem,   // 28px
+    500: 2rem,      // 32px
+    600: 3rem,      // 48px
+    700: 3.5rem,    // 56px
+    800: 3.75rem,   // 60px
+    900: 5rem,      // 80px
+);
+
+$font-weights: (
+    700: 700,
+    600: 600,
+    400: 400,
+)

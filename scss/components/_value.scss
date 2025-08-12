@@ -1,0 +1,65 @@
+@use '../abstract' as *;
+
+.value {
+    @include flex($g: size(32));
+    counter-reset: counter;
+
+    padding-top: size(88);
+    padding-bottom: size(144);
+
+    &__item {
+        counter-increment: counter;
+        position: relative;
+        text-align: center;
+
+        &::before {
+            @include flex($ai: center, $jc: center);
+            content: counter(counter);
+            width: size(56);
+            height: size(56);
+            border-radius: 50%;
+            color: clr(purple, 900);
+            outline: 1px solid clr(purple, 500);
+            margin-inline: auto;
+            margin-bottom: size(64);
+            font-family: $ff-primary;
+            font-size: 1.5rem;
+            line-height: 2.5rem;
+        }
+    }
+
+    &__title {
+
+    }
+
+    &__description {
+
+    }
+
+    @include mq(xl) {
+        flex-direction: column;
+        gap: size(56);
+    }
+
+    @media (min-width: 768px) and (max-width: 1400px) {
+        &__item {
+            text-align: left;
+            padding-left: 104px;
+
+            &:before {
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+    }
+
+    @include mq(sm) {
+        &__item {
+            &::before {
+                margin-bottom: 24px;
+            }
+        }
+    }
+}

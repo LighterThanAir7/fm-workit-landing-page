@@ -1,0 +1,145 @@
+@use "sass:meta";
+@use "sass:math";
+@use "sass:map";
+@use 'sass:string';
+@use 'sass:list';
+@use "sizes" as *;
+@use "typography" as *;
+@use 'breakpoints' as *;
+
+@mixin mq($size, $feature: max-width) {
+    // Support for map of conditions (e.g., (min-width: xs, max-width: sm))
+    @if meta.type-of($size) == "map" {
+        $conditions: ();
+        @each $f, $s in $size {
+            $breakpoint: if(
+                            map.has-key($breakpoints, $s),
+                            map.get($breakpoints, $s),
+                            $s
+            );
+            $conditions: list.append($conditions, "(#{$f}: #{$breakpoint})");
+        }
+        // Join the list into a string with " and "
+        $media-query: "";
+        @for $i from 1 through list.length($conditions) {
+            $media-query: $media-query + list.nth($conditions, $i);
+            @if $i < list.length($conditions) {
+                $media-query: $media-query + " and ";
+            }
+        }
+        @media screen and #{$media-query} {
+            @content;
+        }
+    }
+
+        // Existing logic for single queries
+    @else if map.has-key($breakpoints, $size) {
+        $breakpoint: map.get($breakpoints, $size);
+        @media screen and (#{$feature}: #{$breakpoint}) {
+            @content;
+        }
+    }
+    @else if meta.type-of($size) == number {
+        @if math.is-unitless($size) {
+            @error "Koristi jedinice (npr. px, em) s brojčanim vrijednostima za @mq()";
+        } @else {
+            @media screen and (#{$feature}: #{$size}) {
+                @content;
+            }
+        }
+    }
+    @else {
+        @error "Nevažeći parametar za @mq(): #{$size}";
+    }
+}
+
+@mixin flex($d: null, $jc: null, $ai: null, $g: null, $inline: false) {
+    display: if($inline, inline-flex, flex);
+    flex-direction: $d;
+    justify-content: $jc;
+    align-items: $ai;
+    gap: $g;
+}
+
+@mixin font-face-multi($family, $file-path, $weight: normal) {
+    @font-face {
+        font-family: $family;
+        src: url("#{$file-path}.eot");
+        src: url("#{$file-path}.eot?#iefix") format('embedded-opentype'),
+        url("#{$file-path}.woff2") format('woff2'),
+        url("#{$file-path}.woff") format('woff'),
+        url("#{$file-path}.ttf") format('truetype'),
+        url("#{$file-path}.svg##{$family}-#{$weight}") format('svg');
+        font-weight: $weight;
+        font-style: normal;
+        font-display: swap;
+    }
+}
+
+@mixin font-face-single($family, $file-path, $format: 'truetype') {
+    @font-face {
+        font-family: $family;
+        src: url("#{$file-path}") format('#{$format}');
+        font-style: normal;
+        font-display: swap;
+        @content;
+    }
+}
+
+@mixin visually-hidden() {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@mixin transition(
+    $properties: (),          // Lista svojstava (obavezna)
+    $duration: 'normal',      // Ključ iz $durations ili broj (default: 'normal')
+    $timing: null,            // Ključ iz $transitions (opcionalno)
+    $content...               // Dodatni CSS blok
+) {
+    // Automatski postavi 'all' ako nema svojstava
+    $resolved-properties: if(list.length($properties) == 0, (all), $properties);
+
+    // Razrješavanje trajanja
+    $resolved-duration: if(map.has-key($durations, $duration), map.get($durations, $duration),
+            if(
+                            meta.type-of($duration) == number and math.unit($duration) != '',
+                            $duration,
+                            null
+            )
+    );
+
+    @if $resolved-duration == null {
+        @error "Nevažeći duration: #{$duration}. Koristite ključ iz $durations ili broj s jedinicom (npr. 300ms)";
+    }
+
+    // Razrješavanje timing funkcije
+    $resolved-timing: null;
+    @if $timing {
+        @if map.has-key($transitions, $timing) {
+            $resolved-timing: map.get($transitions, $timing);
+        } @else {
+            @error "Nevažeći timing: #{$timing}. Dostupne opcije: #{map-keys($transitions)}";
+        }
+    }
+
+    // Generiranje transition propertyja
+    $transitions-list: ();
+    @each $prop in $properties {
+        $transition: $prop $resolved-duration;
+        @if $resolved-timing {
+            $transition: $transition $resolved-timing;
+        }
+        $transitions-list: list.append($transitions-list, $transition, comma);
+    }
+
+    transition: $transitions-list;
+    @content($content);
+}

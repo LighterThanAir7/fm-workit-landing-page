@@ -1,0 +1,101 @@
+@use '../abstract' as *;
+
+.hero {
+    background-color: clr(purple, 900);
+    color: clr(white);
+    padding-top: size(56);
+    text-align: center;
+    position: relative;
+    margin-bottom: size(168);
+
+    &__content {
+        margin-top: size(56);
+        padding-bottom: size(296);
+    }
+
+    &__title {
+        text-wrap: balance;
+        max-width: 635px;
+        margin-inline: auto;
+    }
+
+    &__decoration {
+        position: absolute;
+        top: calc(#{size(56)} + var(--offset));
+
+        &-left {
+            --offset: 47px;
+
+            $max_vw: 1440px;
+            $min_vw: 768px;
+
+            $left_start: -20px;
+            $left_end: -220px;
+
+            $delta_left: $left_end - ($left_start);
+            $delta_vw: $min_vw - $max_vw;
+
+            $multiplier: ($delta_left / $delta_vw);
+            $multiplier_vw: $multiplier * 100vw;
+
+            $fixed_value: $left_start - ($max_vw * $multiplier);
+            left: clamp($left_end, $multiplier_vw + $fixed_value, $left_start);
+        }
+
+        &-right {
+            --offset: 251px;
+            right: -3%;
+        }
+    }
+
+    &__image {
+        --padding: 80px;
+        width: clamp(360px, 60vw + var(--padding), calc(767px + var(--padding)));
+        padding-inline: var(--padding);
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: clamp(-24%, -13vw, -11%);
+        z-index: 1;
+    }
+
+    &__clip-path {
+        content: '';
+        height: 72px;
+        width: 100%;
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        background-color: clr(white);
+        clip-path: url(#hero-clip-path);
+
+        &-svg {
+            position: absolute;
+            width: 0;
+            height: 0;
+        }
+    }
+
+    @include mq(xl) {
+        margin-bottom: 136px;
+
+        &__image {
+            --padding: #{size(40)};
+        }
+    }
+
+    @include mq(sm) {
+        margin-bottom: 80px;
+
+        &__image {
+            --padding: #{size(20)};
+        }
+
+        &__decoration {
+            display: none;
+        }
+    }
+
+    @include mq(xs) {
+    }
+}

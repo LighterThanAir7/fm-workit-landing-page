@@ -1,0 +1,10 @@
+@use '../abstract' as *;
+
+.header {
+    background-color: clr(purple, 900);
+    padding-top: size(56);
+
+    & > nav {
+        @include flex($ai: center, $jc: space-between);
+    }
+}
