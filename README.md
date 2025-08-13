@@ -14,7 +14,7 @@ This is a solution to the [Workit landing page challenge on Frontend Mentor](htt
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-___
+
 ## Overview
 ### The challenge
 
@@ -31,7 +31,6 @@ Users should be able to:
 - Live Site URL: [Github.io](https://lighterthanair7.github.io/fm-workit-landing-page)
 
 ## My Process
-___
 
 ### Built with
 
