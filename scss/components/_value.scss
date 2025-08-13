@@ -3,7 +3,6 @@
 .value {
     @include flex($g: size(32));
     counter-reset: counter;
-
     padding-top: size(88);
     padding-bottom: size(144);
 

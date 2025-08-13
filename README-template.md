@@ -14,98 +14,121 @@ This is a solution to the [Workit landing page challenge on Frontend Mentor](htt
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
-
 ### The challenge
 
 Users should be able to:
-
-- View the optimal layout for the interface depending on their device's screen size
-- See hover and focus states for all interactive elements on the page
+- Implement given design using HTML and CSS to get the same result as in the design file respecting responsive design
 
 ### Screenshot
 
-![](./screenshot.jpg)
-
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+![](./screenshot.avif)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
-
-## My process
+- Solution URL: [Github Repo](https://github.com/LighterThanAir7/fm-workit-landing-page)
+- Live Site URL: [Github.io](https://lighterthanair7.github.io/fm-workit-landing-page)
 
 ### Built with
 
 - Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- CSS Grid
-- Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+- SCSS preprocessor
+- Desktop-first workflow
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+I learned to convert SVG section-divider shapes to a relative coordinate system, which makes them scale more elegantly and improves responsiveness. I also used [Axe DevTools](https://www.deque.com/axe/devtools/) to audit accessibility and realized how important a proper heading hierarchy is. Jumping from an h1 directly to an h3 isn’t ideal, so I added an h2 for the “values” section using an sr-only utility class to keep the semantics correct without changing the visual design.
 
-To see how you can add code snippets, see below:
+Here are two small snippets I’m proud of from this project.
+1) Using native CSS counters instead of extra <span> elements for the values section:
 
-```html
-<h1>Some HTML code I'm proud of</h1>
+```scss
+.value {
+    @include flex($g: size(32));
+    counter-reset: counter;
+    padding-top: size(88);
+    padding-bottom: size(144);
+
+    &__item {
+        counter-increment: counter;
+        position: relative;
+        text-align: center;
+
+        &::before {
+            @include flex($ai: center, $jc: center);
+            content: counter(counter);
+            width: size(56);
+            height: size(56);
+            border-radius: 50%;
+            color: clr(purple, 900);
+            outline: 1px solid clr(purple, 500);
+            margin-inline: auto;
+            margin-bottom: size(64);
+            font-family: $ff-primary;
+            font-size: 1.5rem;
+            line-height: 2.5rem;
+        }
+
+        // ...
+    }
+    
+    // ...
+}
+
 ```
-```css
-.proud-of-this-css {
-  color: papayawhip;
+
+2) Dynamically calculating an offset for responsive positioning of hero decorative elements:
+
+```scss
+.hero {
+
+    // ...
+    &__decoration {
+        position: absolute;
+        top: calc(#{size(56)} + var(--offset));
+
+        &-left {
+            --offset: 47px;
+            $max_vw: 1440px;
+            $min_vw: 768px;
+
+            $left_start: -20px;
+            $left_end: -220px;
+
+            $delta_left: $left_end - ($left_start);
+            $delta_vw: $min_vw - $max_vw;
+
+            $multiplier: ($delta_left / $delta_vw);
+            $multiplier_vw: $multiplier * 100vw;
+
+            $fixed_value: $left_start - ($max_vw * $multiplier);
+            left: clamp($left_end, $multiplier_vw + $fixed_value, $left_start);
+        }
+
+        // ...
+    }
+
+    // ...
 }
 ```
-```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
-```
-
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+Here are the areas I want to keep focusing on:
+- I’m relatively new to web accessibility and I’m working toward meeting WCAG 2.2 AA.
+- Skip-to-main-content: adding a visible-on-focus skip link and ensuring the main region can receive programmatic focus.
+- ARIA usage: prefer native HTML semantics first; add ARIA only when necessary. Learn where aria-label/aria-labelledby/aria-describedby are appropriate, and avoid redundant or conflicting ARIA.
+- Roles and landmarks: use semantic elements (main, header, nav, footer, aside) before adding role attributes; apply roles to fill gaps only when there’s no suitable native element.
+- Headings and document outline: maintain a logical hierarchy (h1 → h2 → h3…). In cases where a visual design skips a level, supply an appropriate heading for semantics (e.g., an off-screen “sr-only” h2) while keeping the visual design intact.
+- Keyboard accessibility: ensure all interactive elements are reachable and operable via keyboard, with clear focus states and no keyboard traps.
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- [Using CSS counters](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_counter_styles/Using_CSS_counters) - This helped me utilize native CSS counters to auto-number elements without adding extra markup like dedicated <span> or <div> with hardcoded numbers. I really liked this pattern and will use it going forward.
+- [Convert SVG absolute clip-path to relative](https://yoksel.github.io/relative-clip-path/) - This helped me take the custom section divider shape from Figma and convert its SVG coordinates from absolute to relative for easier responsiveness. A very handy tool.
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+- Github - [LighterThanAir7](https://github.com/LighterThanAir7)
+- Frontend Mentor - [@LighterThanAir7](https://www.frontendmentor.io/profile/LighterThanAir7)
