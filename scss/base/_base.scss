@@ -54,7 +54,7 @@ h3 {
     line-height: 120%;
     font-family: $ff-primary;
     margin-bottom: size(28);
-    font-variation-settings: "wght" 600;
+    font-variation-settings: "wght" 600, "SOFT" 50;
 
     @include mq(xl) {
         font-size: fs(400);

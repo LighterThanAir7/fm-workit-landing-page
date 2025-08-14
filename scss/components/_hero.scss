@@ -1,4 +1,5 @@
 @use '../abstract' as *;
+@use "sass:map";
 
 .hero {
     background-color: clr(purple, 900);
@@ -15,25 +16,28 @@
 
     &__title {
         text-wrap: balance;
-        max-width: 635px;
+        max-width: 40rem; // 640px
         margin-inline: auto;
     }
 
     &__decoration {
         position: absolute;
-        top: calc(#{size(56)} + var(--offset));
+        top: size(56) + var(--offset);
 
         &-left {
-            --offset: 47px;
+            --offset: 3rem;
 
-            $max_vw: 1440px;
-            $min_vw: 768px;
+            $max_vw: map.get($breakpoints, xl);
+            $min_vw: map.get($breakpoints, sm);
 
-            $left_start: -20px;
-            $left_end: -220px;
+            $left_start: -1.25rem;
+            $left_end: -13.75rem;
 
             $delta_left: $left_end - ($left_start);
             $delta_vw: $min_vw - $max_vw;
+
+            @debug $delta_left;
+            @debug $delta_vw;
 
             $multiplier: ($delta_left / $delta_vw);
             $multiplier_vw: $multiplier * 100vw;
@@ -43,7 +47,7 @@
         }
 
         &-right {
-            --offset: 251px;
+            --offset: 15.6875rem; // 251px;
             right: -3%;
         }
     }
@@ -94,8 +98,5 @@
         &__decoration {
             display: none;
         }
-    }
-
-    @include mq(xs) {
     }
 }
