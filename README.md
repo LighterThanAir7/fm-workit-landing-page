@@ -92,11 +92,11 @@ Here are two small snippets I’m proud of from this project.
 
         &-left {
             --offset: 47px;
-            $max_vw: 1440px;
-            $min_vw: 768px;
+            $max_vw: map.get($breakpoints, xl);
+            $min_vw: map.get($breakpoints, sm);
 
-            $left_start: -20px;
-            $left_end: -220px;
+            $left_start: -1.25rem;
+            $left_end: -13.75rem;
 
             $delta_left: $left_end - ($left_start);
             $delta_vw: $min_vw - $max_vw;
