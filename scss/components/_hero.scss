@@ -36,9 +36,6 @@
             $delta_left: $left_end - ($left_start);
             $delta_vw: $min_vw - $max_vw;
 
-            @debug $delta_left;
-            @debug $delta_vw;
-
             $multiplier: ($delta_left / $delta_vw);
             $multiplier_vw: $multiplier * 100vw;
 
